@@ -6,4 +6,4 @@ Study the basics about Python A to Z
 
 ## Study Information
 - Study Everyday AM 9:00 - 11:00
-- Start on 2017/04/08
+- Start on 2017/04/08/
