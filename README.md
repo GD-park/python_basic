@@ -1,4 +1,4 @@
-# python_basic
+# python & R_basic
 Study the basics about Python A to Z
 
 ## Goal
