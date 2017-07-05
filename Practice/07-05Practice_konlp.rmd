@@ -1,0 +1,33 @@
+library(KoNLP)
+library(stringr)
+txt <- "회사의 경영위기 상황에서 Professional한 자세로 보험료 21% 인하라는 성과를 달성했으며, 전략적인 대안 제시 및 해외 재보험사 등과 효과적인 Communication을 통해  이란산 Condensate 이슈, Captive 추가 위험 인수 등 과제를 완수하였음. 향후에도 회사의 보험관리 수준의 획기적인 발전에 크게 기여할 수 있는 자질과 역량을 갖추고 있음"
+
+aaa <- extractNoun(txt)
+
+pos <- SimplePos09(txt) # 상위 9개의 품사 태그를 달아
+pos.vector <- paste(pos)
+words2 <- str_match(pos.vector, '([가-힣]+)/[NP]')  #[가-힣] - 정규표현식 모든 한글 
+words3 <- words2[,2] 
+bbb <- words3[!is.na(words3)] #결측치 처리
+
+buildDictionary(ext_dic = "woorimalsam", user_dic=data.frame("경영위기", "ncps"),replace_usr_dic = T) #NC taging 하는 것 - 보통명사를 지칭
+get_dictionary('user_dic')
+
+buildDictionary(ext_dic = "woorimalsam", user_dic=data.frame("선행전도사기", "ncn"),replace_usr_dic = T)
+extractNoun("할리우드 톱스타 레오나르도 디카프리오는 선행전도사기 행보를 이어갔다.")
+
+aaa <- extractNoun("회사의 경영위기 상황에서 Professional한 자세로 보험료 21% 인하라는 성과를 달성했으며, 전략적인 대안 제시 및 해외 재보험사 등과 효과적인 Communication을 통해  이란산 Condensate 이슈, Captive 추가 위험 인수 등 과제를 완수하였음. 향후에도 회사의 보험관리 수준의 획기적인 발전에 크게 기여할 수 있는 자질과 역량을 갖추고 있음")
+pos
+aaa[1]
+paste(aaa)
+aaa[2:3]
+str_match(txt, '([경영]+)/[NP]')
+
+str_match(paste(SimplePos09(txt)), '([기]+)/[E]')
+SimplePos09(txt)
+
+
+txt <- c("개선하자", "개선방안", "방안")
+a <- str_extract(txt, "[^개]+")
+a
+a[!is.na(a)]
